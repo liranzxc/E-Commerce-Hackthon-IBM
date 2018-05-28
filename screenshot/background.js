@@ -14,11 +14,11 @@ var information;
 var url;
 function getLogo(url) {
   logo.src = url + "/apple-touch-icon.png";
-  logo.onerror = function() {
-      logo.src = "https://plus.google.com/_/favicon?domain_url=" + url;
+  logo.onerror = function () {
+    logo.src = "https://plus.google.com/_/favicon?domain_url=" + url;
   }
 }
-var getLocation = function(href) {
+var getLocation = function (href) {
   var l = document.createElement("a");
   l.href = href;
   return l;
@@ -26,15 +26,15 @@ var getLocation = function(href) {
 
 
 // Listen for a click on the camera icon. On that click, take a screenshot.
-chrome.browserAction.onClicked.addListener(function() {
+chrome.browserAction.onClicked.addListener(function () {
 
-  chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-        url = tabs[0].url;
-        information = getLocation(url);
-        alert("Hostname: " + l.hostname+"\n" +" Path: "+l.pathname );
+  chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
+    url = tabs[0].url;
+    information = getLocation(url);
+    alert("Hostname: " + l.hostname + "\n" + " Path: " + l.pathname);
   });
-  
-  chrome.tabs.captureVisibleTab(function(screenshotUrl) {
+
+  chrome.tabs.captureVisibleTab(function (screenshotUrl) {
     var viewTabUrl = chrome.extension.getURL('screenshot.html?id=' + id++)
     var targetId = null;
 
@@ -65,14 +65,16 @@ chrome.browserAction.onClicked.addListener(function() {
 
           var sisi = screenshotUrl.replace(/^data:image\/[^;]+/, 'data:application/octet-stream');
           window.open(sisi);
-          
+
           break;
         }
       }
     });
 
-    chrome.tabs.create({url: viewTabUrl}, function(tab) {
+    chrome.tabs.create({ url: viewTabUrl }, function (tab) {
       targetId = tab.id;
+      alert("XYZ");
+
     });
   });
 });
