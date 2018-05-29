@@ -12,6 +12,7 @@ var logo;
 var hostname;
 var information;
 var url;
+var title ;
 function getLogo(url) {
   logo.src = url + "/apple-touch-icon.png";
   logo.onerror = function () {
@@ -28,6 +29,10 @@ var getLocation = function (href) {
 // Listen for a click on the camera icon. On that click, take a screenshot.
 chrome.browserAction.onClicked.addListener(function () {
   chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
+
+    title = (tabs[0].title); // get tab name
+    //alert(title);
+
     url = tabs[0].url;
     information = getLocation(url);
   });
@@ -57,6 +62,7 @@ chrome.browserAction.onClicked.addListener(function () {
         var view = views[i];
         if (view.location.href == viewTabUrl) {
           view.setScreenshotUrl(screenshotUrl);
+          view.setTitle(title);
           view.setHostname(information.hostname);
           view.setpath(information.pathname);
           view.setlogo(getLogo(url));

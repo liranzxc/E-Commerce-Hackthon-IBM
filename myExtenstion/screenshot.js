@@ -18,11 +18,15 @@ function setScreenshotUrl(url) {
 
 
 }
+function setTitle(title)
+{
+  document.getElementById("title").innerHTML ="Title : " + title;
+}
 function setHostname(hostname) {
-  document.getElementById("hostname").innerHTML = hostname;
+  document.getElementById("hostname").innerHTML = "Hostname : " + hostname;
 }
 function setpath(path) {
-  document.getElementById("pathname").innerHTML = path;
+  document.getElementById("pathname").innerHTML = "Path : "+ path;
 }
 function setlogo(logo) {
   document.getElementById("logo").src = logo;
